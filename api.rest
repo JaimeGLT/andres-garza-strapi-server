@@ -1,0 +1,2 @@
+curl -X GET http://localhost:1337/api/blog-contents?populate[category][populate]=cover \
+-H "Authorization: Bearer abf0ee97601e9521cd3d002e670b4dc679da656ad0b0834b48e8d1dd087c36b26dd2e75d4f17c24237168a38558f399f8db2a0adec4abc61293b8a423a3e3c70dde9bb8762db51eb49a04458c37c5d92b0d2c8247aae72ab45037ecbd0088f058b2e0dc888b47c7e26a3ae4d02e20312cfcfdcc9f7c5e49f742da10d33b65c29
