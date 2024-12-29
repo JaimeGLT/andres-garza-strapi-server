@@ -391,7 +391,11 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+        minLength: 10;
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -416,7 +420,7 @@ export interface ApiBlogContentBlogContent extends Struct.CollectionTypeSchema {
   };
   attributes: {
     categories: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::category.category'
     >;
     Content: Schema.Attribute.Blocks &
@@ -450,6 +454,7 @@ export interface ApiBlogContentBlogContent extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
         minLength: 10;
       }>;
     updatedAt: Schema.Attribute.DateTime;
@@ -474,8 +479,8 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
-    blog_content: Schema.Attribute.Relation<
-      'manyToOne',
+    blog_contents: Schema.Attribute.Relation<
+      'manyToMany',
       'api::blog-content.blog-content'
     >;
     createdAt: Schema.Attribute.DateTime;
@@ -526,6 +531,96 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     siteDescription: Schema.Attribute.Text & Schema.Attribute.Required;
     siteName: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRegistrosCronPopularRegistrosCronPopular
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'registros_cron_populars';
+  info: {
+    displayName: 'Registros Cron Popular';
+    pluralName: 'registros-cron-populars';
+    singularName: 'registros-cron-popular';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Hora: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::registros-cron-popular.registros-cron-popular'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Respuesta: Schema.Attribute.JSON;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRegistrosCronRecienteRegistrosCronReciente
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'registros_cron_recientes';
+  info: {
+    displayName: 'Registros Cron Reciente';
+    pluralName: 'registros-cron-recientes';
+    singularName: 'registros-cron-reciente';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Hora: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::registros-cron-reciente.registros-cron-reciente'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Respuesta: Schema.Attribute.JSON;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiRegistrosCronShortRegistrosCronShort
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'registros_cron_shorts';
+  info: {
+    displayName: 'Registros Cron Short';
+    pluralName: 'registros-cron-shorts';
+    singularName: 'registros-cron-short';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Hora: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::registros-cron-short.registros-cron-short'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Respuesta: Schema.Attribute.JSON;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1045,6 +1140,9 @@ declare module '@strapi/strapi' {
       'api::blog-content.blog-content': ApiBlogContentBlogContent;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::registros-cron-popular.registros-cron-popular': ApiRegistrosCronPopularRegistrosCronPopular;
+      'api::registros-cron-reciente.registros-cron-reciente': ApiRegistrosCronRecienteRegistrosCronReciente;
+      'api::registros-cron-short.registros-cron-short': ApiRegistrosCronShortRegistrosCronShort;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

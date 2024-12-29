@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "registros_cron_shorts",
+  "info": {
+    "singularName": "registros-cron-short",
+    "pluralName": "registros-cron-shorts",
+    "displayName": "Registros Cron Short"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Hora": {
+      "type": "datetime"
+    },
+    "Respuesta": {
+      "type": "json"
+    }
+  }
+}

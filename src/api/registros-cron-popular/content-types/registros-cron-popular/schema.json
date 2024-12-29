@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "registros_cron_populars",
+  "info": {
+    "singularName": "registros-cron-popular",
+    "pluralName": "registros-cron-populars",
+    "displayName": "Registros Cron Popular"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Hora": {
+      "type": "datetime"
+    },
+    "Respuesta": {
+      "type": "json"
+    }
+  }
+}

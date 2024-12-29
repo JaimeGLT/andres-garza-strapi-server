@@ -24,9 +24,9 @@
       "type": "string",
       "required": true
     },
-    "blog_content": {
+    "blog_contents": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::blog-content.blog-content",
       "inversedBy": "categories"
     }
