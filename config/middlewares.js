@@ -1,4 +1,5 @@
 module.exports = [
+  'strapi::errors',
   {
     name: 'strapi::cors',
     config: {
@@ -6,10 +7,7 @@ module.exports = [
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     },
   },
-
   'strapi::logger',
-  'strapi::errors',
-  'strapi::security',
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
