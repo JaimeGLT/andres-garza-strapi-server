@@ -3,7 +3,7 @@ const axios = require('axios');
 const { VITE_URL_VIDEOS_SHORTS, VITE_KEY, VITE_URL_VIDEOS_POPULARES, VITE_URL_VIDEOS_RECIENTES } = process.env;
 
 module.exports = {
-  '* 4 * * *': async ({ strapi }) => {
+  '38 7 * * *': async ({ strapi }) => {
     try {
       const response = await axios.get(`${VITE_URL_VIDEOS_POPULARES}${VITE_KEY}`);
       await strapi.entityService.update('api::registros-cron-popular.registros-cron-popular', 1, { 
