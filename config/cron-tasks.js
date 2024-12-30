@@ -3,8 +3,9 @@ const axios = require('axios');
 const { VITE_URL_VIDEOS_SHORTS, VITE_KEY, VITE_URL_VIDEOS_POPULARES, VITE_URL_VIDEOS_RECIENTES } = process.env;
 
 module.exports = {
-  '* 11 * *': async ({ strapi }) => {
+  '30 15 * *': async ({ strapi }) => {
     try {
+
       const response = await axios.get(`${VITE_URL_VIDEOS_POPULARES}${VITE_KEY}`);
       
       // Verificar si existe el registro con ID 1
