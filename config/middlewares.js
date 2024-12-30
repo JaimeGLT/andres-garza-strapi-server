@@ -7,6 +7,7 @@ module.exports = [
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     },
   },
+  'strapi::security',
   'strapi::logger',
   'strapi::cors',
   'strapi::poweredBy',
