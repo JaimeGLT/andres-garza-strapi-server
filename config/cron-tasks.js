@@ -3,7 +3,7 @@ const axios = require('axios');
 const { VITE_URL_VIDEOS_SHORTS, VITE_KEY, VITE_URL_VIDEOS_POPULARES, VITE_URL_VIDEOS_RECIENTES } = process.env;
 
 module.exports = {
-  '* * * *': async ({ strapi }) => {
+  '* 17 * *': async ({ strapi }) => {
     try {
 
       const response = await axios.get(`${VITE_URL_VIDEOS_POPULARES}${VITE_KEY}`);
@@ -12,7 +12,7 @@ module.exports = {
       const existingPopular = await strapi.entityService.findOne('api::registros-cron-popular.registros-cron-popular', 1);
       if (existingPopular) {
         // Actualizar el registro si existe
-        await strapi.entityService.update('api::registros-cron-popular.registros-cron-popular', 1, { 
+        await strapi.entityService.update('api::registros-cron-popular.registros-cron-popular', 3, { 
           data: {
             Hora: new Date(),
             Respuesta: JSON.stringify(response.data),
